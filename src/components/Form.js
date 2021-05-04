@@ -12,7 +12,7 @@ function Form() {
     event.preventDefault();
     let city = document.getElementById("city").value;
     document.getElementById("form").style.display = "block";
-    const base = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=143454aa39bbe3442a890cdbf3f9db36`;
+    const base = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=143454aa39bbe3442a890cdbf3f9db36`;
     fetch(base)
       .then((response) => {
         return response.json();
