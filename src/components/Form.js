@@ -22,22 +22,14 @@ function Form() {
         const { temp, feels_like, temp_min, temp_max } = data.main;
         const place = data.name;
         document.getElementById("temp").innerHTML = place;
+        document.getElementById("current_temp").innerHTML =
+          "Current Temparature : " + temp;
         document.getElementById("feels_like").innerHTML =
-          "Temparature in " +
-          place +
-          " is " +
-          temp +
-          " C . It feels like " +
-          feels_like +
-          " C . The minimum temperature for today in " +
-          place +
-          " is " +
-          temp_min +
-          " C . The maximum temparature for today in " +
-          place +
-          " is " +
-          temp_max +
-          " C .";
+          "Feels Like : " + feels_like;
+        document.getElementById("temp_min").innerHTML =
+          "Minimum Temparature : " + temp_min;
+        document.getElementById("temp_max").innerHTML =
+          "Maximum Temparature : " + temp_max;
       });
   }
   return (
@@ -78,7 +70,16 @@ function Form() {
           <h5 class="card-title" id="temp">
             {}
           </h5>
+          <p class="card-text" id="current_temp">
+            {}
+          </p>
           <p class="card-text" id="feels_like">
+            {}
+          </p>
+          <p class="card-text" id="temp_min">
+            {}
+          </p>
+          <p class="card-text" id="temp_max">
             {}
           </p>
         </div>
