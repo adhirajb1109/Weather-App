@@ -23,17 +23,30 @@ function Form() {
         console.log(sunset);
         const icon = data.weather[0].icon;
         const speed = data.wind.speed;
-        const { temp, feels_like, temp_min, temp_max, pressure, humidity } = data.main;
+        const {
+          temp,
+          feels_like,
+          temp_min,
+          temp_max,
+          pressure,
+          humidity,
+        } = data.main;
         const place = data.name;
         const visibility = data.visibility;
-        document.getElementById("icon").src = `http://openweathermap.org/img/w/${icon}.png`
+        document.getElementById(
+          "icon"
+        ).src = `http://openweathermap.org/img/w/${icon}.png`;
         document.getElementById("temp").innerHTML = place;
         document.getElementById("current_temp").innerHTML =
           "Current Temparature : " + temp + " C";
         document.getElementById("sunrise").innerHTML =
-          "Sunrise : " + new Date((sunrise * 1000)).toLocaleTimeString("en-GB") + " A.M";
+          "Sunrise : " +
+          new Date(sunrise * 1000).toLocaleTimeString("en-GB") +
+          " A.M";
         document.getElementById("sunset").innerHTML =
-          "Sunset : " + new Date((sunset * 1000)).toLocaleTimeString("en-GB") + " P.M";
+          "Sunset : " +
+          new Date(sunset * 1000).toLocaleTimeString("en-GB") +
+          " P.M";
         document.getElementById("feels_like").innerHTML =
           "Feels Like : " + feels_like + " C";
         document.getElementById("temp_min").innerHTML =
@@ -45,7 +58,7 @@ function Form() {
         document.getElementById("humidity").innerHTML =
           "Humidity : " + humidity + " %";
         document.getElementById("visibility").innerHTML =
-          "Visibility : " + ((visibility / 1000).toFixed(2)) + " KM";
+          "Visibility : " + (visibility / 1000).toFixed(2) + " KM";
         document.getElementById("speed").innerHTML =
           "Wind Speed : " + speed + " Kmph";
         document.getElementById("form").style.display = "block";
@@ -87,39 +100,39 @@ function Form() {
       <div className="card" style={{ width: "19rem" }} id="form">
         <div className="card-body">
           <h5 className="card-title" id="temp">
-            { }
+            {}
           </h5>
           <img src="" className="card-img-top" id="icon" alt="weather-icon" />
           <br />
           <p className="card-text" id="current_temp">
-            { }
+            {}
           </p>
           <p className="card-text" id="sunrise">
-            { }
+            {}
           </p>
           <p className="card-text" id="sunset">
-            { }
+            {}
           </p>
           <p className="card-text" id="feels_like">
-            { }
+            {}
           </p>
           <p className="card-text" id="temp_min">
-            { }
+            {}
           </p>
           <p className="card-text" id="temp_max">
-            { }
+            {}
           </p>
           <p className="card-text" id="pressure">
-            { }
+            {}
           </p>
           <p className="card-text" id="humidity">
-            { }
+            {}
           </p>
           <p className="card-text" id="visibility">
-            { }
+            {}
           </p>
           <p className="card-text" id="speed">
-            { }
+            {}
           </p>
         </div>
       </div>
