@@ -29,7 +29,7 @@ function Form() {
           temp +
           " C . It feels like " +
           feels_like +
-          " C . The minimum temperature for today in" +
+          " C . The minimum temperature for today in " +
           place +
           " is " +
           temp_min +
@@ -73,7 +73,7 @@ function Form() {
       </form>
       <br />
       <br />
-      <div class="card" style={{ width: "18rem" }} id="form">
+      <div class="card" style={{ width: "19rem" }} id="form">
         <div class="card-body">
           <h5 class="card-title" id="temp">
             {}
