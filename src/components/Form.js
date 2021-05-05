@@ -3,8 +3,8 @@ import React from "react";
 function Form() {
   function clear(event) {
     event.preventDefault();
-    document.getElementById('city').value = "";
-    document.getElementById('temp').innerHTML = "";
+    document.getElementById("city").value = "";
+    document.getElementById("temp").innerHTML = "";
     document.getElementById("feels_like").innerHTML = "";
     document.getElementById("form").style.display = "none";
   }
@@ -19,7 +19,7 @@ function Form() {
       })
       .then((data) => {
         console.log(data);
-        const { temp, feels_like } = data.main;
+        const { temp, feels_like, temp_min, temp_max } = data.main;
         const place = data.name;
         document.getElementById("temp").innerHTML = place;
         document.getElementById("feels_like").innerHTML =
@@ -28,7 +28,16 @@ function Form() {
           " is " +
           temp +
           " C . It feels like " +
-          feels_like + " C .";
+          feels_like +
+          " C . The minimum temperature for today in" +
+          place +
+          " is " +
+          temp_min +
+          " C . The maximum temparature for today in " +
+          place +
+          " is " +
+          temp_max +
+          " C .";
       });
   }
   return (
@@ -55,12 +64,10 @@ function Form() {
           id="submit"
         >
           Submit
-        </button><br/><br/>
-        <button
-          onClick={clear}
-          class="btn btn-danger"
-          id="Clear"
-        >
+        </button>
+        <br />
+        <br />
+        <button onClick={clear} class="btn btn-danger" id="Clear">
           Clear
         </button>
       </form>
