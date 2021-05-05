@@ -69,7 +69,7 @@ function Form() {
         <div class="card-body">
           <h5 class="card-title" id="temp">
             {}
-          </h5>
+          
           <p class="card-text" id="current_temp">
             {}
           </p>
