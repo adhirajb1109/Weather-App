@@ -23,13 +23,13 @@ function Form() {
         const place = data.name;
         document.getElementById("temp").innerHTML = place;
         document.getElementById("current_temp").innerHTML =
-          "Current Temparature : " + temp;
+          "Current Temparature : " + temp + " C";
         document.getElementById("feels_like").innerHTML =
-          "Feels Like : " + feels_like;
+          "Feels Like : " + feels_like + " C";
         document.getElementById("temp_min").innerHTML =
-          "Minimum Temparature : " + temp_min;
+          "Minimum Temparature : " + temp_min + " C";
         document.getElementById("temp_max").innerHTML =
-          "Maximum Temparature : " + temp_max;
+          "Maximum Temparature : " + temp_max + " C";
       });
   }
   return (
