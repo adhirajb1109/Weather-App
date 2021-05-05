@@ -4,3 +4,7 @@
 #form {
   display: none;
 }
+#icon {
+  height: 50px;
+  width: 50px;
+}

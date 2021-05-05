@@ -11,38 +11,57 @@ function Form() {
   function submit(event) {
     event.preventDefault();
     let city = document.getElementById("city").value;
-    document.getElementById("form").style.display = "block";
     const base = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=143454aa39bbe3442a890cdbf3f9db36`;
     fetch(base)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        const { temp, feels_like, temp_min, temp_max } = data.main;
+        const sunrise = data.sys.sunrise;
+        console.log(sunrise);
+        const sunset = data.sys.sunset;
+        console.log(sunset);
+        const icon = data.weather[0].icon;
+        const speed = data.wind.speed;
+        const { temp, feels_like, temp_min, temp_max, pressure, humidity } = data.main;
         const place = data.name;
+        const visibility = data.visibility;
+        document.getElementById("icon").src = `http://openweathermap.org/img/w/${icon}.png`
         document.getElementById("temp").innerHTML = place;
         document.getElementById("current_temp").innerHTML =
           "Current Temparature : " + temp + " C";
+        document.getElementById("sunrise").innerHTML =
+          "Sunrise : " + new Date((sunrise * 1000)).toLocaleTimeString("en-GB") + " A.M";
+        document.getElementById("sunset").innerHTML =
+          "Sunset : " + new Date((sunset * 1000)).toLocaleTimeString("en-GB") + " P.M";
         document.getElementById("feels_like").innerHTML =
           "Feels Like : " + feels_like + " C";
         document.getElementById("temp_min").innerHTML =
           "Minimum Temparature : " + temp_min + " C";
         document.getElementById("temp_max").innerHTML =
           "Maximum Temparature : " + temp_max + " C";
+        document.getElementById("pressure").innerHTML =
+          "Pressure : " + pressure + " hPa";
+        document.getElementById("humidity").innerHTML =
+          "Humidity : " + humidity + " %";
+        document.getElementById("visibility").innerHTML =
+          "Visibility : " + ((visibility / 1000).toFixed(2)) + " KM";
+        document.getElementById("speed").innerHTML =
+          "Wind Speed : " + speed + " Kmph";
+        document.getElementById("form").style.display = "block";
       });
   }
   return (
     <div className="container">
       <br />
       <form>
-        <div class="form-group">
+        <div className="form-group">
           <label>Enter City Name :</label>
           <br />
           <br />
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="city"
             aria-describedby="cityName"
             placeholder="Enter City Name :"
@@ -52,39 +71,59 @@ function Form() {
         <button
           type="submit"
           onClick={submit}
-          class="btn btn-primary"
+          className="btn btn-primary"
           id="submit"
         >
           Submit
         </button>
         <br />
         <br />
-        <button onClick={clear} class="btn btn-danger" id="Clear">
+        <button onClick={clear} className="btn btn-danger" id="Clear">
           Clear
         </button>
       </form>
       <br />
       <br />
-      <div class="card" style={{ width: "19rem" }} id="form">
-        <div class="card-body">
-          <h5 class="card-title" id="temp">
-            {}
+      <div className="card" style={{ width: "19rem" }} id="form">
+        <div className="card-body">
+          <h5 className="card-title" id="temp">
+            { }
           </h5>
+          <img src="" className="card-img-top" id="icon" alt="weather-icon" />
           <br />
-          <p class="card-text" id="current_temp">
-            {}
+          <p className="card-text" id="current_temp">
+            { }
           </p>
-          <p class="card-text" id="feels_like">
-            {}
+          <p className="card-text" id="sunrise">
+            { }
           </p>
-          <p class="card-text" id="temp_min">
-            {}
+          <p className="card-text" id="sunset">
+            { }
           </p>
-          <p class="card-text" id="temp_max">
-            {}
+          <p className="card-text" id="feels_like">
+            { }
+          </p>
+          <p className="card-text" id="temp_min">
+            { }
+          </p>
+          <p className="card-text" id="temp_max">
+            { }
+          </p>
+          <p className="card-text" id="pressure">
+            { }
+          </p>
+          <p className="card-text" id="humidity">
+            { }
+          </p>
+          <p className="card-text" id="visibility">
+            { }
+          </p>
+          <p className="card-text" id="speed">
+            { }
           </p>
         </div>
       </div>
+      <br />
     </div>
   );
 }
