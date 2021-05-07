@@ -17,12 +17,10 @@ function Form() {
         return response.json();
       })
       .then((data) => {
-        const sunrise = data.sys.sunrise;
-        console.log(sunrise);
-        const sunset = data.sys.sunset;
-        console.log(sunset);
-        const icon = data.weather[0].icon;
-        const speed = data.wind.speed;
+        const rise = data.sys.sunrise;
+        const set = data.sys.sunset;
+        const weather_icon = data.weather[0].icon;
+        const wind_speed = data.wind.speed;
         const {
           temp,
           feels_like,
@@ -31,21 +29,21 @@ function Form() {
           pressure,
           humidity,
         } = data.main;
-        const place = data.name;
-        const visibility = data.visibility;
+        const place_p = data.name;
+        const visibility_v = data.visibility;
         document.getElementById(
           "icon"
-        ).src = `http://openweathermap.org/img/w/${icon}.png`;
-        document.getElementById("temp").innerHTML = place;
+        ).src = `http://openweathermap.org/img/w/${weather_icon}.png`;
+        document.getElementById("temp").innerHTML = place_p;
         document.getElementById("current_temp").innerHTML =
           "Current Temparature : " + temp + " C";
         document.getElementById("sunrise").innerHTML =
           "Sunrise : " +
-          new Date(sunrise * 1000).toLocaleTimeString("en-GB") +
+          new Date(rise * 1000).toLocaleTimeString("en-GB") +
           " A.M";
         document.getElementById("sunset").innerHTML =
           "Sunset : " +
-          new Date(sunset * 1000).toLocaleTimeString("en-GB") +
+          new Date(set * 1000).toLocaleTimeString("en-GB") +
           " P.M";
         document.getElementById("feels_like").innerHTML =
           "Feels Like : " + feels_like + " C";
@@ -58,24 +56,25 @@ function Form() {
         document.getElementById("humidity").innerHTML =
           "Humidity : " + humidity + " %";
         document.getElementById("visibility").innerHTML =
-          "Visibility : " + (visibility / 1000).toFixed(2) + " KM";
+          "Visibility : " + (visibility_v / 1000).toFixed(2) + " KM";
         document.getElementById("speed").innerHTML =
-          "Wind Speed : " + speed + " Kmph";
+          "Wind Speed : " + wind_speed + " Kmph";
         document.getElementById("form").style.display = "block";
       });
     fetch(
-      `https://api.weatherbit.io/v2.0/current/airquality?city=${city}&key=8c64ab4f74214e499c47202da4546621`
+      `https://api.weatherbit.io/v2.0/current?city=${city}&key=8c64ab4f74214e499c47202da4546621&include=minutely`
     )
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        const aqi = data.data[0].aqi;
-        document.getElementById("aqi").innerHTML = "AQI (Air Quality Index) : " + aqi;
+        const uv_index = data.data[0].uv;
+        const aqi_air = data.data[0].aqi;
+        const precipitation = data.data[0].precip;
+        document.getElementById("uv_index").innerHTML = "UV Index : " + uv_index;
+        document.getElementById("aqi").innerHTML = "AQI (Air Quality Index) : " + aqi_air;
+        document.getElementById("precip").innerHTML = "Precipitation : " + precipitation + " MM";
       });
-
-
   }
   return (
     <div className="container">
@@ -132,6 +131,9 @@ function Form() {
           <p className="card-text" id="feels_like">
             { }
           </p>
+          <p className="card-text" id="precip">
+            { }
+          </p>
           <p className="card-text" id="temp_min">
             { }
           </p>
@@ -148,6 +150,9 @@ function Form() {
             { }
           </p>
           <p className="card-text" id="speed">
+            { }
+          </p>
+          <p className="card-text" id="uv_index">
             { }
           </p>
         </div>
