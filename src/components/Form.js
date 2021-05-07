@@ -11,7 +11,7 @@ function Form() {
   function submit(event) {
     event.preventDefault();
     let city = document.getElementById("city").value;
-    const base = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=143454aa39bbe3442a890cdbf3f9db36`;
+    let base = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=143454aa39bbe3442a890cdbf3f9db36`;
     fetch(base)
       .then((response) => {
         return response.json();
@@ -63,6 +63,19 @@ function Form() {
           "Wind Speed : " + speed + " Kmph";
         document.getElementById("form").style.display = "block";
       });
+    fetch(
+      `https://api.weatherbit.io/v2.0/current/airquality?city=${city}&key=8c64ab4f74214e499c47202da4546621`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        const aqi = data.data[0].aqi;
+        document.getElementById("aqi").innerHTML = "AQI (Air Quality Index) : " + aqi;
+      });
+
+
   }
   return (
     <div className="container">
@@ -100,39 +113,42 @@ function Form() {
       <div className="card" style={{ width: "19rem" }} id="form">
         <div className="card-body">
           <h5 className="card-title" id="temp">
-            {}
+            { }
           </h5>
           <img src="" className="card-img-top" id="icon" alt="weather-icon" />
           <br />
           <p className="card-text" id="current_temp">
-            {}
+            { }
+          </p>
+          <p className="card-text" id="aqi">
+            { }
           </p>
           <p className="card-text" id="sunrise">
-            {}
+            { }
           </p>
           <p className="card-text" id="sunset">
-            {}
+            { }
           </p>
           <p className="card-text" id="feels_like">
-            {}
+            { }
           </p>
           <p className="card-text" id="temp_min">
-            {}
+            { }
           </p>
           <p className="card-text" id="temp_max">
-            {}
+            { }
           </p>
           <p className="card-text" id="pressure">
-            {}
+            { }
           </p>
           <p className="card-text" id="humidity">
-            {}
+            { }
           </p>
           <p className="card-text" id="visibility">
-            {}
+            { }
           </p>
           <p className="card-text" id="speed">
-            {}
+            { }
           </p>
         </div>
       </div>
