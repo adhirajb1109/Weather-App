@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link
-      rel="icon"
-      href="https://i.postimg.cc/qvBx8LyG/weather-app.png"
-    />
+    <link rel="icon" href="https://i.postimg.cc/qvBx8LyG/weather-app.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Hi ! This Is A Weather App Built By Adhiraj Bhatia ." />
+    <meta
+      name="description"
+      content="Hi ! This Is A Weather App Built By Adhiraj Bhatia ."
+    />
     <link
       rel="apple-touch-icon"
       href="https://i.postimg.cc/qvBx8LyG/weather-app.png"
@@ -29,6 +29,12 @@
       href="https://fonts.googleapis.com/css2?family=Itim&display=swap"
       rel="stylesheet"
     />
+    <script>
+      if ("serviceWorker" in navigator) {
+        // register service worker
+        navigator.serviceWorker.register("service-worker.js");
+      }
+    </script>
     <title>Weather App</title>
   </head>
   <body>
