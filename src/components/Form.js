@@ -11,7 +11,6 @@ function Form() {
   }
   function submit(event) {
     event.preventDefault();
-    document.getElementById("form").style.display = "none";
     let city = document.getElementById("city").value;
     if (city.substring === " ") {
       city = city.split(" ").join('+');
