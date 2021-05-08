@@ -1,16 +1,29 @@
 import React from "react";
 
 function Form() {
+  function Home(event) {
+    event.preventDefault();
+    document.getElementById("card").style.display = "none";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("form").style.display = "block";
+  }
   function clear(event) {
     event.preventDefault();
     document.getElementById("city").value = "";
     document.getElementById("temp").innerHTML = "";
     document.getElementById("feels_like").innerHTML = "";
-    document.getElementById("form").style.display = "none";
+    document.getElementById("form").style.display = "block";
+    document.getElementById("card").style.display = "none";
+    document.getElementById("home").style.display = "none";
   }
   function submit(event) {
     event.preventDefault();
+    document.getElementById("form").style.display = "none";
+    document.getElementById("home").style.display = "block";
     let city = document.getElementById("city").value;
+    if (city.substring === " ") {
+      city = city.split(' ').join('+');
+    }
     let base = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=143454aa39bbe3442a890cdbf3f9db36`;
     fetch(base)
       .then((response) => {
@@ -59,7 +72,7 @@ function Form() {
           "Visibility : " + (visibility_v / 1000).toFixed(2) + " KM";
         document.getElementById("speed").innerHTML =
           "Wind Speed : " + wind_speed + " Kmph";
-        document.getElementById("form").style.display = "block";
+        document.getElementById("card").style.display = "block";
       });
     fetch(
       `https://api.weatherbit.io/v2.0/current?city=${city}&key=8c64ab4f74214e499c47202da4546621&include=minutely`
@@ -79,6 +92,7 @@ function Form() {
   return (
     <div className="container">
       <br />
+      <div id="form">
       <form>
         <div className="form-group">
           <label>Enter City Name :</label>
@@ -106,10 +120,11 @@ function Form() {
         <button onClick={clear} className="btn btn-danger" id="Clear">
           Clear
         </button>
-      </form>
+        </form>
+        <br />
       <br />
-      <br />
-      <div className="card" style={{ width: "19rem" }} id="form">
+      </div>
+      <div className="card" style={{ width: "19rem" }} id="card">
         <div className="card-body">
           <h5 className="card-title" id="temp">
             { }
@@ -157,6 +172,8 @@ function Form() {
           </p>
         </div>
       </div>
+      <br/>
+      <button className="btn btn-success" id="home" onClick={Home}>Go Back To Home Screen</button>
       <br />
     </div>
   );
