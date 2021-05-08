@@ -1,12 +1,6 @@
 import React from "react";
 
 function Form() {
-  function Home(event) {
-    event.preventDefault();
-    document.getElementById("card").style.display = "none";
-    document.getElementById("home").style.display = "none";
-    document.getElementById("form").style.display = "block";
-  }
   function clear(event) {
     event.preventDefault();
     document.getElementById("city").value = "";
