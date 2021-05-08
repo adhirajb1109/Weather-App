@@ -19,7 +19,6 @@ function Form() {
   function submit(event) {
     event.preventDefault();
     document.getElementById("form").style.display = "none";
-    document.getElementById("home").style.display = "block";
     let city = document.getElementById("city").value;
     if (city.substring === " ") {
       city = city.split(' ').join('+');
@@ -88,6 +87,7 @@ function Form() {
         document.getElementById("aqi").innerHTML = "AQI (Air Quality Index) : " + aqi_air;
         document.getElementById("precip").innerHTML = "Precipitation : " + precipitation + " MM";
       });
+      document.getElementById("home").style.display = "block";
   }
   return (
     <div className="container">
