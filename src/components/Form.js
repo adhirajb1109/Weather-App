@@ -14,14 +14,13 @@ function Form() {
     document.getElementById("feels_like").innerHTML = "";
     document.getElementById("form").style.display = "block";
     document.getElementById("card").style.display = "none";
-    document.getElementById("home").style.display = "none";
   }
   function submit(event) {
     event.preventDefault();
     document.getElementById("form").style.display = "none";
     let city = document.getElementById("city").value;
     if (city.substring === " ") {
-      city = city.split(' ').join('+');
+      city = city.split(" ").join('+');
     }
     let base = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=143454aa39bbe3442a890cdbf3f9db36`;
     fetch(base)
@@ -87,7 +86,6 @@ function Form() {
         document.getElementById("aqi").innerHTML = "AQI (Air Quality Index) : " + aqi_air;
         document.getElementById("precip").innerHTML = "Precipitation : " + precipitation + " MM";
       });
-      document.getElementById("home").style.display = "block";
   }
   return (
     <div className="container">
@@ -173,8 +171,6 @@ function Form() {
         </div>
       </div>
       <br/>
-      <button className="btn btn-success" id="home" onClick={Home}>Go Back To Home Screen</button>
-      <br />
     </div>
   );
 }
